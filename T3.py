@@ -1,5 +1,5 @@
 import utils
-import GraphMaker as gm
+import graphMaker as gm
 
 
 # dfs标记，求出连通分量

@@ -48,6 +48,32 @@ def paint_polarized(nodes_number, edges, name):
     plt.show()
 
 
+# 绘制更新网络
+def paint(nodes_number, edges, name, had_spread_nodes):
+    G = nx.Graph()
+    # 添加对应的边和点
+    for i in range(1, nodes_number):
+        G.add_node(i, desc=str(i))
+    # 两种方式加边，一种可以指明name
+    # G.add_edge(1, 2, name='6')
+    G.add_edges_from(edges)
+    # 设置每一个节点的colors
+    colors = ['#1F78B4'] * nodes_number
+    for i in had_spread_nodes:
+        colors[i] = 'green'
+    # 按pos所定位置画出节点,无标签无权值，有多种layout
+    pos = nx.circular_layout(G)
+    nx.draw_networkx(G, pos, with_labels=None, node_color=colors)
+    # 画出标签
+    node_labels = nx.get_node_attributes(G, 'desc')
+    nx.draw_networkx_labels(G, pos, labels=node_labels)
+    # 画出边权值
+    # edge_labels = nx.get_edge_attributes(G, 'name')
+    # nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+    plt.title(name, fontsize=10)
+    plt.show()
+
+
 # demo
 def main():
     edges = [
@@ -59,7 +85,7 @@ def main():
         (3, 6),
         (4, 5)
     ]
-    paint(7, edges, '合并连通分支后的图')
+    paint(7, edges, '合并连通分支后的图', {1, 2})
 
 
 if __name__ == '__main__':
