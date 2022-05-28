@@ -71,7 +71,7 @@ def main():
         for j in range(cnt):
             if matrix_after[i][j] == 'E':
                 edges.append((i, j))
-    gm.paint(cnt, edges, "合并连通分支后的图")
+    gm.paint_(cnt, edges, "合并连通分支后的图")
     # 判断生成图是否为二分图，即可断定其稳定性
     if check(matrix_after):
         print("不包含包含奇数长度负圈，网络结构稳定")

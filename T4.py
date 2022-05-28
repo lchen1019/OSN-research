@@ -1,4 +1,5 @@
 import utils
+import matplotlib.pyplot as plt
 import graphMaker as gm
 import tableMaker as tm
 
@@ -24,9 +25,17 @@ def get_friends_spread(matrix, spread, spread_friends):
                 spread_friends[k] += 1
 
 
+# 绘制扩散曲线
+def paint_curve(x, y):
+    plt.xlabel('时间')  # x轴标签
+    plt.ylabel('接受规模')  # y轴标签
+    plt.plot(x, y)  # 绘制图像
+    plt.show()  # 显示图像
+
+
 def main():
-    n = 15
-    m = 2
+    n = 200
+    m = n * 0.01
     # 随机生成邻接矩阵和每一个节点门槛值
     matrix = utils.get_input(n)
     threshold = utils.get_threshold(n)
@@ -39,17 +48,17 @@ def main():
     # 随机生成初始化节点
     spread = utils.get_init(n, m)
     # 输出随机信息
-    for i in matrix:
-        print(i)
-    print(threshold)
-    print(spread)
+    # for i in matrix:
+        # print(i)
+    # print(threshold)
+    # print(spread)
     # 求出初始每一个节点的朋友数
     friends = get_all_neighbors(matrix)
-    print(friends)
+    # print(friends)
     # 初始化每一个人的朋友中，接收新事物朋友的数量
     spread_friends = [0] * n
     get_friends_spread(matrix, spread, spread_friends)
-    print(spread_friends)
+    # print(spread_friends)
     # 初始化每一个节点是否已经接收新事物
     accept_tag = [False] * n
     for i in spread:
@@ -62,6 +71,8 @@ def main():
     # 每一轮扫描发生过更新节点的邻接节点情况
     # 不断循环更新，直到没有一轮中没有节点加入
     update_round = 1
+    x = [1]
+    y = [0.01]
     while True:
         update = False
         need_update = set()
@@ -75,11 +86,15 @@ def main():
             break
         # 更新传播到的朋友矩阵
         get_friends_spread(matrix, need_update, spread_friends)
-        print(need_update)
+        # print(need_update)
         # 绘制扩散图像
         spread.update(need_update)
+        print(len(spread))
         gm.paint(n, edges, "第" + str(update_round) + "步扩散结果", spread)
         update_round += 1
+        y.append(len(spread) / n)
+        x.append(update_round)
+    paint_curve(x, y)
 
 
 if __name__ == "__main__":
