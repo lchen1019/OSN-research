@@ -18,3 +18,5 @@ Simulate Diffusion Phenomena.
 ## T5
 
 Simulate some voting algorithms, especially the middle term theorem.
+
+### Thank you for this course, not only expanded my horizons, but also taught me python!
