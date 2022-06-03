@@ -17,7 +17,7 @@ def get_polarized_network(n):
     matrix = [[0] * n for i in range(n)]
     for i in range(n):
         for j in range(i):
-            k = random.randint(0, 7)
+            k = random.randint(0, 6)
             if k == 1:
                 matrix[i][j] = 'F'
             elif k == 2:

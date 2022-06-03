@@ -6,7 +6,7 @@ mpl.rcParams['font.sans-serif'] = ['STZhongsong']  # 指定默认字体：解决
 mpl.rcParams['axes.unicode_minus'] = False  # 解决保存图像是负号'-'显示为方块的问题
 
 
-def paint_(nodes_number, edges, name):
+def paint(nodes_number, edges, name):
     G = nx.Graph()
     # 添加对应的边和点
     for i in range(1, nodes_number):
