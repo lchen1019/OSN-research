@@ -46,7 +46,7 @@ def random_graph():
     cnt = 0
     x = []
     y = []
-    while cnt < 10000:
+    while cnt < 1000:
         n = random.randint(10, 500)
         x.append(n)
         matrix = utils.get_input(n)
@@ -63,7 +63,7 @@ def real_graph():
 
 
 def main():
-    # random_graph()
+    random_graph()
     real_graph()
 
 
