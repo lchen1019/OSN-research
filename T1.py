@@ -42,6 +42,7 @@ def main():
         for j in range(n):
             print(matrix[i][j], end=' ')
         print()
+
     # 计算任意点的聚集系数
     print("聚集系数")
     clustering_coefficient = [0] * n
